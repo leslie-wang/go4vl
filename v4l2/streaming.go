@@ -88,7 +88,7 @@ func makeBuffer(v4l2Buf C.struct_v4l2_buffer) Buffer {
 		Info:       *(*BufferInfo)(unsafe.Pointer(&v4l2Buf.m[0])),
 		Length:     uint32(v4l2Buf.length),
 		Reserved2:  uint32(v4l2Buf.reserved2),
-		RequestFD:  *(*int32)(unsafe.Pointer(&v4l2Buf.anon0[0])),
+		//RequestFD:  *(*int32)(unsafe.Pointer(&v4l2Buf.anon0[0])),
 	}
 }
 

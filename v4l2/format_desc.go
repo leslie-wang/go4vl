@@ -17,28 +17,30 @@ import (
 type FmtDescFlag = uint32
 
 const (
-	FmtDescFlagCompressed                  FmtDescFlag = C.V4L2_FMT_FLAG_COMPRESSED
-	FmtDescFlagEmulated                    FmtDescFlag = C.V4L2_FMT_FLAG_EMULATED
-	FmtDescFlagContinuousBytestream        FmtDescFlag = C.V4L2_FMT_FLAG_CONTINUOUS_BYTESTREAM
-	FmtDescFlagDynResolution               FmtDescFlag = C.V4L2_FMT_FLAG_DYN_RESOLUTION
-	FmtDescFlagEncodedCaptureFrameInterval FmtDescFlag = C.V4L2_FMT_FLAG_ENC_CAP_FRAME_INTERVAL
-	FmtDescFlagConfigColorspace            FmtDescFlag = C.V4L2_FMT_FLAG_CSC_COLORSPACE
-	FmtDescFlagConfigXferFunc              FmtDescFlag = C.V4L2_FMT_FLAG_CSC_XFER_FUNC
-	FmtDescFlagConfigYcbcrEnc              FmtDescFlag = C.V4L2_FMT_FLAG_CSC_YCBCR_ENC
-	FmtDescFlagConfigHsvEnc                FmtDescFlag = C.V4L2_FMT_FLAG_CSC_HSV_ENC
-	FmtDescFlagConfigQuantization          FmtDescFlag = C.V4L2_FMT_FLAG_CSC_QUANTIZATION
+	FmtDescFlagCompressed FmtDescFlag = C.V4L2_FMT_FLAG_COMPRESSED
+	FmtDescFlagEmulated   FmtDescFlag = C.V4L2_FMT_FLAG_EMULATED
+	//FmtDescFlagContinuousBytestream        FmtDescFlag = C.V4L2_FMT_FLAG_CONTINUOUS_BYTESTREAM
+	//FmtDescFlagDynResolution               FmtDescFlag = C.V4L2_FMT_FLAG_DYN_RESOLUTION
+	//FmtDescFlagEncodedCaptureFrameInterval FmtDescFlag = C.V4L2_FMT_FLAG_ENC_CAP_FRAME_INTERVAL
+	//FmtDescFlagConfigColorspace            FmtDescFlag = C.V4L2_FMT_FLAG_CSC_COLORSPACE
+	//FmtDescFlagConfigXferFunc              FmtDescFlag = C.V4L2_FMT_FLAG_CSC_XFER_FUNC
+	//FmtDescFlagConfigYcbcrEnc              FmtDescFlag = C.V4L2_FMT_FLAG_CSC_YCBCR_ENC
+	//FmtDescFlagConfigHsvEnc                FmtDescFlag = C.V4L2_FMT_FLAG_CSC_HSV_ENC
+	//FmtDescFlagConfigQuantization          FmtDescFlag = C.V4L2_FMT_FLAG_CSC_QUANTIZATION
 )
 
 var FormatDescriptionFlags = map[FmtDescFlag]string{
-	FmtDescFlagCompressed:                  "Compressed",
-	FmtDescFlagEmulated:                    "Emulated",
-	FmtDescFlagContinuousBytestream:        "Continuous bytestream",
-	FmtDescFlagDynResolution:               "Dynamic resolution",
-	FmtDescFlagEncodedCaptureFrameInterval: "Encoded capture frame interval",
-	FmtDescFlagConfigColorspace:            "Colorspace update supported",
-	FmtDescFlagConfigXferFunc:              "Transfer func update supported",
-	FmtDescFlagConfigYcbcrEnc:              "YCbCr/HSV update supported",
-	FmtDescFlagConfigQuantization:          "Quantization update supported",
+	FmtDescFlagCompressed: "Compressed",
+	FmtDescFlagEmulated:   "Emulated",
+	/*
+		FmtDescFlagContinuousBytestream:        "Continuous bytestream",
+		FmtDescFlagDynResolution:               "Dynamic resolution",
+		FmtDescFlagEncodedCaptureFrameInterval: "Encoded capture frame interval",
+		FmtDescFlagConfigColorspace:            "Colorspace update supported",
+		FmtDescFlagConfigXferFunc:              "Transfer func update supported",
+		FmtDescFlagConfigYcbcrEnc:              "YCbCr/HSV update supported",
+		FmtDescFlagConfigQuantization:          "Quantization update supported",
+	*/
 }
 
 // FormatDescription  (v4l2_fmtdesc) provides access to the device format description
@@ -75,7 +77,7 @@ func makeFormatDescription(fmtDesc C.struct_v4l2_fmtdesc) FormatDescription {
 		Flags:       uint32(fmtDesc.flags),
 		Description: C.GoString((*C.char)(unsafe.Pointer(&fmtDesc.description[0]))),
 		PixelFormat: uint32(fmtDesc.pixelformat),
-		MBusCode:    uint32(fmtDesc.mbus_code),
+		//MBusCode:    uint32(fmtDesc.mbus_code),
 	}
 }
 

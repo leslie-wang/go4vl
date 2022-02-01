@@ -43,9 +43,9 @@ const (
 	CapAsyncIO   uint32 = C.V4L2_CAP_ASYNCIO
 	CapStreaming uint32 = C.V4L2_CAP_STREAMING
 
-	CapMetadataOutput     uint32 = C.V4L2_CAP_META_OUTPUT
-	CapTouch              uint32 = C.V4L2_CAP_TOUCH
-	CapIOMediaController  uint32 = C.V4L2_CAP_IO_MC
+	//CapMetadataOutput     uint32 = C.V4L2_CAP_META_OUTPUT
+	CapTouch uint32 = C.V4L2_CAP_TOUCH
+	//CapIOMediaController  uint32 = C.V4L2_CAP_IO_MC
 	CapDeviceCapabilities uint32 = C.V4L2_CAP_DEVICE_CAPS
 )
 
@@ -86,10 +86,10 @@ var (
 		{Cap: CapReadWrite, Desc: "read/write IO"},
 		{Cap: CapAsyncIO, Desc: "asynchronous IO"},
 		{Cap: CapStreaming, Desc: "streaming IO"},
-		{Cap: CapMetadataOutput, Desc: "metadata output"},
+		//{Cap: CapMetadataOutput, Desc: "metadata output"},
 
 		{Cap: CapTouch, Desc: "touch capability"},
-		{Cap: CapIOMediaController, Desc: "IO media controller"},
+		//{Cap: CapIOMediaController, Desc: "IO media controller"},
 
 		{Cap: CapDeviceCapabilities, Desc: "device capabilities"},
 	}
@@ -107,7 +107,7 @@ type Capability struct {
 	Card string
 
 	// BusInfo is the name of the device bus
-	BusInfo string 
+	BusInfo string
 
 	// Version is the kernel version
 	Version uint32
@@ -116,7 +116,7 @@ type Capability struct {
 	Capabilities uint32
 
 	// DeviceCapabilities is the capability for this particular (opened) device or node
-	DeviceCapabilities uint32 
+	DeviceCapabilities uint32
 }
 
 // GetCapability retrieves capability info for device

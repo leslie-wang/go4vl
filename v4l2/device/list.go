@@ -2,6 +2,7 @@ package device
 
 import (
 	"fmt"
+	"io/ioutil"
 	"os"
 	"regexp"
 )
@@ -34,7 +35,7 @@ func IsDevice(devpath string) (bool, error) {
 
 // GetAllDevicePaths return a slice of all mounted v4l2 devices
 func GetAllDevicePaths() ([]string, error) {
-	entries, err := os.ReadDir(root)
+	entries, err := ioutil.ReadDir(root)
 	if err != nil {
 		return nil, err
 	}
@@ -52,5 +53,5 @@ func GetAllDevicePaths() ([]string, error) {
 			result = append(result, dev)
 		}
 	}
-	return result,  nil
+	return result, nil
 }

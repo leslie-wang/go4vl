@@ -26,7 +26,7 @@ func main() {
 	// helper function to search for format descriptions
 	findPreferredFmt := func(fmts []v4l2.FormatDescription, pixEncoding v4l2.FourCCType) *v4l2.FormatDescription {
 		for _, desc := range fmts {
-			if desc.PixelFormat == pixEncoding{
+			if desc.PixelFormat == pixEncoding {
 				return &desc
 			}
 		}
@@ -35,14 +35,14 @@ func main() {
 
 	// get supported format descriptions
 	fmtDescs, err := device.GetFormatDescriptions()
-	if err != nil{
+	if err != nil {
 		log.Fatal("failed to get format desc:", err)
 	}
 
 	// search for preferred formats
 	preferredFmts := []v4l2.FourCCType{v4l2.PixelFmtMPEG, v4l2.PixelFmtMJPEG, v4l2.PixelFmtJPEG, v4l2.PixelFmtYUYV}
 	var fmtDesc *v4l2.FormatDescription
-	for _, preferredFmt := range preferredFmts{
+	for _, preferredFmt := range preferredFmts {
 		fmtDesc = findPreferredFmt(fmtDescs, preferredFmt)
 		if fmtDesc != nil {
 			break
@@ -55,14 +55,14 @@ func main() {
 	}
 	log.Printf("Found preferred fmt: %s", fmtDesc)
 	frameSizes, err := v4l2.GetFormatFrameSizes(device.GetFileDescriptor(), fmtDesc.PixelFormat)
-	if err!=nil{
+	if err != nil {
 		log.Fatalf("failed to get framesize info: %s", err)
 	}
 
 	// select size 640x480 for format
 	var frmSize v4l2.FrameSize
 	for _, size := range frameSizes {
-		if size.Width == 640 && size.Height == 480 {
+		if size.Width == 1280 && size.Height == 720 {
 			frmSize = size
 			break
 		}
@@ -78,7 +78,7 @@ func main() {
 		Width:       frmSize.Width,
 		Height:      frmSize.Height,
 		PixelFormat: fmtDesc.PixelFormat,
-		Field:       v4l2.FieldNone,
+		//Field:       v4l2.FieldNone,
 	}); err != nil {
 		log.Fatalf("failed to set format: %s", err)
 	}
